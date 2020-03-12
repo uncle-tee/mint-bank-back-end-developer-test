@@ -1,0 +1,16 @@
+dependencies {
+    implementation("javax.inject:javax.inject:1")
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.8'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.0'
+
+    implementation group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.2.Final'
+
+    implementation "javax.validation:validation-api:2.0.0.Final"
+
+    implementation group: 'org.springframework', name: 'spring-context', version: '5.0.0.RELEASE'
+    implementation group: 'org.springframework', name: 'spring-orm', version: '5.0.0.RELEASE'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation(project(":${projectName}-domain"))
+}

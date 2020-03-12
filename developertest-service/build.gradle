@@ -1,0 +1,8 @@
+dependencies {
+    implementation(project(":${projectName}-domain"))
+    compile('com.querydsl:querydsl-core:4.2.1')
+    compile('org.springframework.boot:spring-boot-starter-web:2.1.2.RELEASE')
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+
+}
