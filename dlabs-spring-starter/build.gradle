@@ -14,4 +14,5 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
     implementation(project(":${projectName}-domain"))
     implementation(project(":dlabs-starter"))
+    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.0.9.RELEASE'
 }

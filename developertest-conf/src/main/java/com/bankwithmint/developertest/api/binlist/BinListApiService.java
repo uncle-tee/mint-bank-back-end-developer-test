@@ -2,10 +2,8 @@ package com.bankwithmint.developertest.api.binlist;
 
 import cloud.dlabs.apiutil.RetinaSpringStarter;
 import com.bankwithmint.developertest.binlist.CardLookup;
-import com.bankwithmint.developertest.service.BinListService;
-import javassist.NotFoundException;
+import com.bankwithmint.developertest.service.CardLookApiService;
 import okhttp3.Interceptor;
-import retrofit2.Call;
 import retrofit2.Response;
 
 
@@ -15,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Named
-public class BinListApiService extends RetinaSpringStarter<BinListApi> implements BinListService {
+public class BinListApiService extends RetinaSpringStarter<BinListApi> implements CardLookApiService {
 
     BinListApi binListApi = null;
 

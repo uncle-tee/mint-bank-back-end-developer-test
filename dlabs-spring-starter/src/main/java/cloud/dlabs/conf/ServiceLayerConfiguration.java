@@ -1,6 +1,6 @@
 package cloud.dlabs.conf;
 
-import com.bankwithmint.developertest.domain.TestEntity;
+import com.bankwithmint.developertest.domain.CardLookUp;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.annotation.Bean;
@@ -52,7 +52,7 @@ public class ServiceLayerConfiguration {
         hibernateProperties.setProperty("hibernate.show_sql", "true");
         factoryBean.setJpaProperties(hibernateProperties);
         factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        factoryBean.setPackagesToScan(TestEntity.class.getPackage().getName());
+        factoryBean.setPackagesToScan(CardLookUp.class.getPackage().getName());
         return factoryBean;
 
     }
