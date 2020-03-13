@@ -60,10 +60,12 @@ dependencies {
     implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.8'
 
     implementation(project(":dlabs-spring-starter"))
+    implementation(project(":dlabs-starter"))
     implementation(project(":${projectName}-api-client"))
     implementation(project(":${projectName}-domain"))
     implementation(project(":${projectName}-service"))
     implementation(project(":${projectName}-service-impl"))
     implementation(project(":${projectName}-web-conf"))
     implementation(project(":${projectName}-controller"))
+    implementation(project(":${projectName}-dto"))
 }
