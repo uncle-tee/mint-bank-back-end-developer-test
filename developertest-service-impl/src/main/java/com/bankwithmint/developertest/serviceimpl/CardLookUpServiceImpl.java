@@ -5,10 +5,10 @@ import com.bankwithmint.developertest.dao.CardLookUpRepository;
 import com.bankwithmint.developertest.domain.CardLookUp;
 import com.bankwithmint.developertest.service.CardLookApiService;
 import com.bankwithmint.developertest.service.CardLookupService;
-
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
+import java.time.Instant;
+import java.util.Date;
 import java.util.Optional;
 
 @Named
@@ -32,11 +32,14 @@ public class CardLookUpServiceImpl implements CardLookupService {
             CardLookUp persistedCardLook = cardLookUpRepository.findByNumber(cardNumber).orElseGet(() -> {
                 CardLookUp cardLookUp = new CardLookUp();
                 cardLookUp.setCount(0L);
+                cardLookUp.setDateCreated(Date.from(Instant.now()));
+                cardLookUp.setDateUpdated(Date.from(Instant.now()));
                 cardLookUp.setNumber(cardNumber);
                 return cardLookUp;
             });
             Long increaseCount = persistedCardLook.getCount() + 1L;
             persistedCardLook.setCount(increaseCount);
+            persistedCardLook.setDateUpdated(Date.from(Instant.now()));
             cardLookUpRepository.save(persistedCardLook);
             return Optional.of(cardLookup);
 

@@ -2,6 +2,7 @@ package com.bankwithmint.developertest.domain;
 
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class CardLookUp {
@@ -14,6 +15,12 @@ public class CardLookUp {
 
     @Column(nullable = false)
     private Long count;
+
+    @Column(nullable = false)
+    private Date dateCreated;
+
+    @Column(nullable = false)
+    private Date dateUpdated;
 
     public Long getId() {
         return id;
@@ -37,5 +44,21 @@ public class CardLookUp {
 
     public void setCount(Long count) {
         this.count = count;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public Date getDateUpdated() {
+        return dateUpdated;
+    }
+
+    public void setDateUpdated(Date dateUpdated) {
+        this.dateUpdated = dateUpdated;
     }
 }
