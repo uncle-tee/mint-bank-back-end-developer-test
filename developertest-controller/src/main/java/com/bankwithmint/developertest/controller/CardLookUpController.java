@@ -47,6 +47,7 @@ public class CardLookUpController {
     }
 
 
+    @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
     @GetMapping("/stats")
     public ResponseEntity<?> getStats(@RequestParam("start") Optional<Long> optionalStart,
                                       @RequestParam("limit") Optional<Integer> optionalLimit) {
