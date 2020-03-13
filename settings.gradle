@@ -13,6 +13,7 @@ include "${projectName}-conf",
         "${projectName}-service-impl",
         "${projectName}-domain",
         "${projectName}-dao",
-        "dlabs-spring-starter"
-
+        "dlabs-spring-starter",
+        "dlabs-starter",
+        "${projectName}-dto"
 
