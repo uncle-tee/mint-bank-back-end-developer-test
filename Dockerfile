@@ -3,10 +3,10 @@ MAINTAINER Oluwatobi Adenekan <oluwatobi.t.adenekan@gmail.com,adenekanio@dlabs.c
 ENV APP_HOME=/usr/app
 WORKDIR $APP_HOME
 COPY build.gradle settings.gradle gradlew gradle.properties $APP_HOME/
-COPY gradle $APP_HOME/gradle
-RUN ./gradlew build
-COPY . .
-RUN ./gradlew build
+#COPY gradle $APP_HOME/gradle
+#RUN ./gradlew build
+COPY build/libs/gs-spring-boot-docker-0.1.0.jar $APP_HOME/build/libs/gs-spring-boot-docker-0.1.0.jar8080
+#RUN ./gradlew build
 FROM openjdk:8-jdk-alpine
 ENV ARTIFACT_NAME=gs-spring-boot-docker-0.1.0.jar
 ENV APP_HOME=/usr/app
