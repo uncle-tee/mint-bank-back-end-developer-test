@@ -79,4 +79,6 @@ dependencies {
     implementation(project(":${projectName}-web-conf"))
     implementation(project(":${projectName}-controller"))
     implementation(project(":${projectName}-dto"))
+    implementation(project(":${projectName}-producer"))
+    implementation(project(":${projectName}-consumer"))
 }

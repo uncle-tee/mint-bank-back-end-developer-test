@@ -9,6 +9,7 @@ import com.bankwithmint.developertest.response.PageableResponse;
 import com.bankwithmint.developertest.response.Response;
 import com.bankwithmint.developertest.service.CardLookApiService;
 import com.bankwithmint.developertest.service.CardLookupService;
+import com.bankwithmint.developertest.service.ProducerService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -29,13 +30,20 @@ public class CardLookUpController {
 
     final CardLookUpRepository cardLookUpRepository;
 
-    public CardLookUpController(CardLookupService cardLookApiService, CardLookUpRepository cardLookUpRepository) {
+    final
+    ProducerService producerService;
+
+    public CardLookUpController(CardLookupService cardLookApiService,
+                                CardLookUpRepository cardLookUpRepository,
+                                ProducerService producerService) {
         this.cardLookApiService = cardLookApiService;
         this.cardLookUpRepository = cardLookUpRepository;
+        this.producerService = producerService;
     }
 
     @GetMapping("/verify/{cardNumber}")
     public ResponseEntity<?> doCardLookUp(@PathVariable String cardNumber) {
+
         return cardLookApiService.doCardLookUp(cardNumber).map(cardLookup -> {
             CardLookUpResponse cardLookUpResponse = new CardLookUpResponse();
             cardLookUpResponse.bank = cardLookup.getBank().getName();
@@ -51,6 +59,7 @@ public class CardLookUpController {
     @GetMapping("/stats")
     public ResponseEntity<?> getStats(@RequestParam("start") Optional<Long> optionalStart,
                                       @RequestParam("limit") Optional<Integer> optionalLimit) {
+        producerService.publish("com.ng.vela.even.card_verified", "Testing kafka");
         Pageable pageable = OffsetBasePageRequest
                 .of(optionalStart.orElse(0L), optionalLimit.orElse(20), Sort.by(Sort.Direction.DESC, "count"));
         Page<CardLookUp> cardLookUpBy = cardLookUpRepository
