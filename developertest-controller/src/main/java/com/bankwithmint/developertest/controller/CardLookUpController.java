@@ -26,15 +26,12 @@ public class CardLookUpController {
 
     final CardLookUpRepository cardLookUpRepository;
 
-    final
-    Producer producer;
 
     public CardLookUpController(CardLookupService cardLookApiService,
-                                CardLookUpRepository cardLookUpRepository,
-                                Producer producer) {
+                                CardLookUpRepository cardLookUpRepository) {
         this.cardLookApiService = cardLookApiService;
         this.cardLookUpRepository = cardLookUpRepository;
-        this.producer = producer;
+
     }
 
     @GetMapping("/verify/{cardNumber}")
@@ -55,7 +52,6 @@ public class CardLookUpController {
     @GetMapping("/stats")
     public ResponseEntity<?> getStats(@RequestParam("start") Optional<Long> optionalStart,
                                       @RequestParam("limit") Optional<Integer> optionalLimit) {
-        producer.publish("com.ng.vela.even.card_verified", "Testing kafka");
         Pageable pageable = OffsetBasePageRequest
                 .of(optionalStart.orElse(0L), optionalLimit.orElse(20), Sort.by(Sort.Direction.DESC, "count"));
         Page<CardLookUp> cardLookUpBy = cardLookUpRepository

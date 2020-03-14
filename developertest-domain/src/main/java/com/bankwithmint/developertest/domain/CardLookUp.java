@@ -23,6 +23,19 @@ public class CardLookUp {
     @Column(nullable = false)
     private Date dateUpdated;
 
+    @Lob
+    @Column(length = 100000)
+    private byte[] dump;
+
+
+    public byte[] getDump() {
+        return dump;
+    }
+
+    public void setDump(byte[] data) {
+        this.dump = data;
+    }
+
     public Long getId() {
         return id;
     }

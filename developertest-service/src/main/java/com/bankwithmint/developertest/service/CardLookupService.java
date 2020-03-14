@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface CardLookupService {
     Optional<CardLookup> doCardLookUp(String cardNumber);
+
+    void persistCardLookUp(CardLookup cardLookupResponse);
 }
