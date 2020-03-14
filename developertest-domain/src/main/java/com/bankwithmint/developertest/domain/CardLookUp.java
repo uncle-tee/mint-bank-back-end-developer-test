@@ -4,6 +4,7 @@ package com.bankwithmint.developertest.domain;
 import javax.persistence.*;
 import java.util.Date;
 
+
 @Entity
 public class CardLookUp {
     @Id
