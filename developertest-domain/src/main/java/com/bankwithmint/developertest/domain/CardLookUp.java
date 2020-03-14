@@ -1,6 +1,8 @@
 package com.bankwithmint.developertest.domain;
 
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -23,10 +25,8 @@ public class CardLookUp {
     @Column(nullable = false)
     private Date dateUpdated;
 
-    @Lob
-    @Column(length = 100000)
+    @Column(length = 10485760)
     private byte[] dump;
-
 
     public byte[] getDump() {
         return dump;

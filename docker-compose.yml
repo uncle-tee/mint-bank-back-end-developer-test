@@ -1,5 +1,26 @@
 version: "3"
 services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: zookeeper
+    restart: unless-stopped
+    ports:
+      - 2181:2181
+
+  kafka:
+    image: wurstmeister/kafka
+    container_name: kafka
+    restart: unless-stopped
+    depends_on:
+      - zookeeper
+    ports:
+      - 9092:9092
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      AFKA_ADVERTISED_PORT: 9092
+      KAFKA_CREATE_TOPICS: "com.ng.vela.even.card_verified:1:1"
+
   dbpostgresql:
     image: postgres
     restart: always
@@ -14,3 +35,4 @@ services:
       - "8080:8080"
     depends_on:
       - dbpostgresql
+      - kafka

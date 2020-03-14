@@ -25,7 +25,6 @@ public class KafkaConsumer implements Consumer {
     @KafkaListener(topics = "com.ng.vela.even.card_verified", groupId = "group_id")
     @Override
     public void consume(String message) {
-        logger.debug(String.format("Logging out message %s", message));
         try {
             CardLookup cardLookup = new Gson().fromJson(message, new TypeToken<CardLookup>() {
             }.getType());
