@@ -1,10 +1,12 @@
 package com.bankwithmint.developertest.service;
 
-import com.bankwithmint.developertest.binlist.CardLookup;
+import com.bankwithmint.developertest.binlist.CardLookupApiResponse;
 
 
 import java.util.Optional;
 
 public interface CardLookupService {
-    Optional<CardLookup> doCardLookUp(String cardNumber);
+    Optional<CardLookupApiResponse> doCardLookUp(String cardNumber);
+
+    void persistCardLookUp(CardLookupApiResponse cardLookupApiResponseResponse);
 }

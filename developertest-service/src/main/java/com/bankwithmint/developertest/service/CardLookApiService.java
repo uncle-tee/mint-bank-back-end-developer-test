@@ -1,7 +1,7 @@
 package com.bankwithmint.developertest.service;
 
-import com.bankwithmint.developertest.binlist.CardLookup;
+import com.bankwithmint.developertest.binlist.CardLookupApiResponse;
 
 public interface CardLookApiService {
-    CardLookup verifyCard(String cardNumber);
+    CardLookupApiResponse verifyCard(String cardNumber);
 }

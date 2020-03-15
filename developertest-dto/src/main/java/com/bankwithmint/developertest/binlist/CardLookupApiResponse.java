@@ -1,9 +1,12 @@
 package com.bankwithmint.developertest.binlist;
 
-public class CardLookup {
+import org.omg.CORBA.PRIVATE_MEMBER;
+
+public class CardLookupApiResponse {
     private String scheme;
     private String type;
     private CardBank bank;
+    private String cardNumber;
 
     public String getScheme() {
         return scheme;
@@ -27,5 +30,13 @@ public class CardLookup {
 
     public void setBank(CardBank bank) {
         this.bank = bank;
+    }
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
     }
 }

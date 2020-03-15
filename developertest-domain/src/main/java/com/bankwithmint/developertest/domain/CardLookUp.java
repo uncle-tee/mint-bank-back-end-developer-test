@@ -1,6 +1,8 @@
 package com.bankwithmint.developertest.domain;
 
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -22,6 +24,17 @@ public class CardLookUp {
 
     @Column(nullable = false)
     private Date dateUpdated;
+
+    @Column(length = 10485760)
+    private String dump;
+
+    public String getDump() {
+        return dump;
+    }
+
+    public void setDump(String dump) {
+        this.dump = dump;
+    }
 
     public Long getId() {
         return id;

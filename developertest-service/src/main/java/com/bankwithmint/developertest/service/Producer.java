@@ -1,6 +1,6 @@
 package com.bankwithmint.developertest.service;
 
-public interface ProducerService {
+public interface Producer {
 
     void publish(String topic, String message);
 }

@@ -1,23 +1,21 @@
 package com.bankwithmint.developertest.controller;
 
 import com.bankwithmint.developertest.binlist.CardLookUpResponse;
-import com.bankwithmint.developertest.binlist.CardLookup;
 import com.bankwithmint.developertest.dao.CardLookUpRepository;
 import com.bankwithmint.developertest.dao.OffsetBasePageRequest;
 import com.bankwithmint.developertest.domain.CardLookUp;
 import com.bankwithmint.developertest.response.PageableResponse;
 import com.bankwithmint.developertest.response.Response;
-import com.bankwithmint.developertest.service.CardLookApiService;
 import com.bankwithmint.developertest.service.CardLookupService;
-import com.bankwithmint.developertest.service.ProducerService;
+import com.bankwithmint.developertest.service.Producer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.inject.Inject;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -26,19 +24,17 @@ import java.util.Optional;
 @RequestMapping("card-scheme")
 public class CardLookUpController {
 
+
     final CardLookupService cardLookApiService;
 
     final CardLookUpRepository cardLookUpRepository;
 
-    final
-    ProducerService producerService;
 
     public CardLookUpController(CardLookupService cardLookApiService,
-                                CardLookUpRepository cardLookUpRepository,
-                                ProducerService producerService) {
+                                CardLookUpRepository cardLookUpRepository) {
         this.cardLookApiService = cardLookApiService;
         this.cardLookUpRepository = cardLookUpRepository;
-        this.producerService = producerService;
+
     }
 
     @GetMapping("/verify/{cardNumber}")
@@ -59,7 +55,6 @@ public class CardLookUpController {
     @GetMapping("/stats")
     public ResponseEntity<?> getStats(@RequestParam("start") Optional<Long> optionalStart,
                                       @RequestParam("limit") Optional<Integer> optionalLimit) {
-        producerService.publish("com.ng.vela.even.card_verified", "Testing kafka");
         Pageable pageable = OffsetBasePageRequest
                 .of(optionalStart.orElse(0L), optionalLimit.orElse(20), Sort.by(Sort.Direction.DESC, "count"));
         Page<CardLookUp> cardLookUpBy = cardLookUpRepository

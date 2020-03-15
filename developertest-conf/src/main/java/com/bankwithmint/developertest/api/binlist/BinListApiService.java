@@ -1,7 +1,7 @@
 package com.bankwithmint.developertest.api.binlist;
 
 import cloud.dlabs.apiutil.RetinaSpringStarter;
-import com.bankwithmint.developertest.binlist.CardLookup;
+import com.bankwithmint.developertest.binlist.CardLookupApiResponse;
 import com.bankwithmint.developertest.service.CardLookApiService;
 import okhttp3.Interceptor;
 import retrofit2.Response;
@@ -40,8 +40,8 @@ public class BinListApiService extends RetinaSpringStarter<BinListApi> implement
     }
 
     @Override
-    public CardLookup verifyCard(String cardNumber) {
-        Response<CardLookup> execute = null;
+    public CardLookupApiResponse verifyCard(String cardNumber) {
+        Response<CardLookupApiResponse> execute = null;
         try {
             execute = binListApi.lookUpCard(cardNumber).execute();
             if (execute.isSuccessful() && execute.body() != null) {

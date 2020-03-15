@@ -22,6 +22,7 @@ import org.springframework.context.annotation.Import;
         WebConfiguration.class,
         ServiceLayerConfiguration.class
 })
+
 public class DevelopertestApplication {
     public static void main(String[] args) {
         SpringApplication.run(DevelopertestApplication.class, args);
