@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import com.bankwithmint.developertest.CardLookupApiResponse;
 import org.springframework.stereotype.Component;
@@ -17,12 +18,16 @@ import javax.inject.Inject;
 @Component
 public class KafkaConsumer implements Consumer {
 
-    @Inject
+    final
     CardLookupService cardLookupService;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
-    @KafkaListener(topics = "com.ng.vela.even.card_verified", groupId = "group_id")
+    public KafkaConsumer(CardLookupService cardLookupService) {
+        this.cardLookupService = cardLookupService;
+    }
+
+    @KafkaListener(topics = "${binylist.card.verification}", groupId = "group_id")
     @Override
     public void consume(String message) {
         try {

@@ -28,6 +28,9 @@ public class CardLookUpServiceImpl implements CardLookupService {
     @Value(value = "${data.stale.time}")
     private String staleTime;
 
+    @Value(value = "${binylist.card.verification}")
+    public String binListCardListVerification;
+
 
     final
     Producer producer;
@@ -57,15 +60,10 @@ public class CardLookUpServiceImpl implements CardLookupService {
                     }.getType());
                     return data;
                 }).orElseGet(() -> {
-                    logger.error("Using uncached data");
                     try {
                         CardLookupApiResponse cardLookupApiResponseResponse = cardLookApiService.verifyCard(cardNumber);
                         cardLookupApiResponseResponse.setCardNumber(cardNumber);
-
-                        persistCardLookUp(cardLookupApiResponseResponse);
-
-                        //  producer.publish("com.ng.vela.even.card_verified", gson.toJson(cardLookupApiResponseResponse));
-                        //logger.error("There was an error when publishing");
+                        producer.publish(binListCardListVerification, gson.toJson(cardLookupApiResponseResponse));
                         return cardLookupApiResponseResponse;
                     } catch (Exception ex) {
                         return null;
