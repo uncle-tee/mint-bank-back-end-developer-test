@@ -8,7 +8,7 @@ import com.google.gson.reflect.TypeToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
-import com.bankwithmint.developertest.binlist.CardLookupApiResponse;
+import com.bankwithmint.developertest.CardLookupApiResponse;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;

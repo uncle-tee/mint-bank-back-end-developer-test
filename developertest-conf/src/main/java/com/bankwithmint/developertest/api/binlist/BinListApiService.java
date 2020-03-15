@@ -1,7 +1,7 @@
 package com.bankwithmint.developertest.api.binlist;
 
 import cloud.dlabs.apiutil.RetinaSpringStarter;
-import com.bankwithmint.developertest.binlist.CardLookupApiResponse;
+import com.bankwithmint.developertest.CardLookupApiResponse;
 import com.bankwithmint.developertest.service.CardLookApiService;
 import okhttp3.Interceptor;
 import retrofit2.Response;

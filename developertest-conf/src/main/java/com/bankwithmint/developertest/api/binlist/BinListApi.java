@@ -1,6 +1,6 @@
 package com.bankwithmint.developertest.api.binlist;
 
-import com.bankwithmint.developertest.binlist.CardLookupApiResponse;
+import com.bankwithmint.developertest.CardLookupApiResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

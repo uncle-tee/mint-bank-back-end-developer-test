@@ -1,6 +1,6 @@
 package com.bankwithmint.developertest.service;
 
-import com.bankwithmint.developertest.binlist.CardLookupApiResponse;
+import com.bankwithmint.developertest.CardLookupApiResponse;
 
 
 import java.util.Optional;

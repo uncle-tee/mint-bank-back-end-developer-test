@@ -1,6 +1,6 @@
 package com.bankwithmint.developertest.serviceimpl;
 
-import com.bankwithmint.developertest.binlist.CardLookupApiResponse;
+import com.bankwithmint.developertest.CardLookupApiResponse;
 import com.bankwithmint.developertest.dao.CardLookUpRepository;
 import com.bankwithmint.developertest.domain.CardLookUp;
 import com.bankwithmint.developertest.service.CardLookApiService;
@@ -14,9 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 import javax.inject.Named;
 import javax.transaction.Transactional;
-import java.nio.charset.StandardCharsets;
 import java.time.Instant;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Optional;
 
