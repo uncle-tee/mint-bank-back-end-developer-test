@@ -24,8 +24,5 @@ public class KafkaProducer implements Producer {
     @Override
     public void publish(String topic, String message) {
         kafkaTemplate.send(topic, message);
-        this.kafkaTemplate.send(topic, message);
-
-
     }
 }

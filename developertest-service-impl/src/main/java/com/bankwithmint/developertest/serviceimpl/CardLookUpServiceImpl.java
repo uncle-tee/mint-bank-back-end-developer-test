@@ -56,9 +56,11 @@ public class CardLookUpServiceImpl implements CardLookupService {
                     if (diffInHours > dataStaleTime) {
                         return null;
                     }
-                    CardLookupApiResponse data = gson.fromJson(cardLookUp.getDump(), new TypeToken<CardLookupApiResponse>() {
+                    long count = cardLookUp.getCount() + 1L;
+                    cardLookUp.setCount(count);
+                    cardLookUpRepository.save(cardLookUp);
+                    return gson.<CardLookupApiResponse>fromJson(cardLookUp.getDump(), new TypeToken<CardLookupApiResponse>() {
                     }.getType());
-                    return data;
                 }).orElseGet(() -> {
                     try {
                         CardLookupApiResponse cardLookupApiResponseResponse = cardLookApiService.verifyCard(cardNumber);
@@ -66,11 +68,11 @@ public class CardLookUpServiceImpl implements CardLookupService {
                         producer.publish(binListCardListVerification, gson.toJson(cardLookupApiResponseResponse));
                         return cardLookupApiResponseResponse;
                     } catch (Exception ex) {
-                        return null;
+                        throw ex;
                     }
                 });
 
-        return Optional.ofNullable(cardLookupApiResponse);
+        return Optional.of(cardLookupApiResponse);
     }
 
     @Transactional

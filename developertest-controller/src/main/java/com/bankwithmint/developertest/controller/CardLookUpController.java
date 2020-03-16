@@ -7,9 +7,6 @@ import com.bankwithmint.developertest.domain.CardLookUp;
 import com.bankwithmint.developertest.response.PageableResponse;
 import com.bankwithmint.developertest.response.Response;
 import com.bankwithmint.developertest.service.CardLookupService;
-import com.bankwithmint.developertest.service.Producer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -37,17 +34,30 @@ public class CardLookUpController {
 
     }
 
+    @SuppressWarnings("CatchMayIgnoreException")
     @GetMapping("/verify/{cardNumber}")
     public ResponseEntity<?> doCardLookUp(@PathVariable String cardNumber) {
 
-        return cardLookApiService.doCardLookUp(cardNumber).map(cardLookup -> {
-            CardLookUpResponse cardLookUpResponse = new CardLookUpResponse();
-            cardLookUpResponse.bank = cardLookup.getBank().getName();
-            cardLookUpResponse.scheme = cardLookup.getScheme();
-            cardLookUpResponse.type = cardLookup.getType();
-            return ResponseEntity.ok(new Response<>(true, cardLookUpResponse));
-        }).get();
 
+        try {
+            return cardLookApiService.doCardLookUp(cardNumber).map(cardLookup -> {
+                CardLookUpResponse cardLookUpResponse = new CardLookUpResponse();
+                cardLookUpResponse.bank = cardLookup.getBank().getName();
+                cardLookUpResponse.scheme = cardLookup.getScheme();
+                cardLookUpResponse.type = cardLookup.getType();
+                return ResponseEntity.ok(new Response<>(true, cardLookUpResponse));
+            }).get();
+        } catch (Exception ex) {
+            if (ex instanceof IllegalArgumentException) {
+                if (ex.getMessage().equals(String.valueOf(404))) {
+                    return ResponseEntity.notFound().build();
+                } else {
+                    return ResponseEntity.status(503).body(ex.getMessage());
+                }
+
+            }
+            throw ex;
+        }
     }
 
 
