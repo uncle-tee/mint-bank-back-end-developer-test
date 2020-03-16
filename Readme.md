@@ -27,6 +27,6 @@ If you are curious about what is really happening under the hood you can use `do
 - Use Redis for caching to allow high performance read and write. 
 Currently postgres is used to cache the data, although this scales very well since there is not likely to be many request.
 
-- Run the main jar also in a container (Unfortunately, containerising kafka has been a very serious pain!!!)
+- Run the main jar also in a container 
 
 
